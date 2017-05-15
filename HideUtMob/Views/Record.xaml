@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TabbedPage 
+	xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="HideUtMob.Record"
+	Title="HideUt Mobile">
+
+	<TabbedPage.Children>
+		
+        <ContentPage Title="Month's">
+		
+			<ContentPage.Content>
+				<StackLayout BackgroundColor="White">
+					
+					<ListView x:Name="lvData1" RowHeight="180">  
+						<ListView.ItemTemplate>  
+							<DataTemplate>  
+							<ViewCell> 
+									
+								<StackLayout Orientation="Vertical" Padding="16,0,16,0"> 
+
+									<Label Text="{Binding Planta}" TextColor="#000" FontSize="14" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding Cueros}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding PercentageUt}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding HUtilizationVar}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding Mes}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding Año}" TextColor="#000" LineBreakMode="TailTruncation" />  
+	
+								</StackLayout>  
+									
+							</ViewCell>  
+							</DataTemplate>  
+						</ListView.ItemTemplate>  
+					</ListView>  
+				</StackLayout> 
+			</ContentPage.Content>
+
+			
+		</ContentPage>
+		
+        <ContentPage Title="Week's" >
+
+			<ContentPage.Content>
+				<StackLayout BackgroundColor="White">  
+					<ActivityIndicator IsVisible="{Binding IsBusy}"
+              						   IsRunning="{Binding IsBusy}"
+              						   Color="Black" />
+					
+					<ListView x:Name="lvData2" RowHeight="180">  
+						<ListView.ItemTemplate>  
+							<DataTemplate>  
+							<ViewCell> 
+									
+								<StackLayout Orientation="Vertical" Padding="16,0,16,0"> 
+
+									<Label Text="{Binding Planta}" TextColor="#000" FontSize="14" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding Cueros}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding PercentageUt}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding HUtilizationVar}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding Semana}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding Año}" TextColor="#000" LineBreakMode="TailTruncation" />  
+	
+								</StackLayout>  
+									
+							</ViewCell>  
+							</DataTemplate>  
+						</ListView.ItemTemplate>  
+					</ListView>  
+				</StackLayout> 
+			</ContentPage.Content>
+
+		</ContentPage>
+
+
+		<ContentPage Title="Day's">
+
+        	<ContentPage.Content>
+				<StackLayout BackgroundColor="White">  
+					<ActivityIndicator IsVisible="{Binding IsBusy}"
+              						   IsRunning="{Binding IsBusy}"
+              						   Color="Black" />
+					
+					<ListView x:Name="lvData3" RowHeight="180">  
+						<ListView.ItemTemplate>  
+							<DataTemplate>  
+							<ViewCell> 
+									
+								<StackLayout Orientation="Vertical" Padding="16,0,16,0"> 
+
+									<Label Text="{Binding Planta}" TextColor="#000" FontSize="14" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding Cueros}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding PercentageUt}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding HUtilizationVar}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding Dia}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding Año}" TextColor="#000" LineBreakMode="TailTruncation" /> 
+									<Label Text="{Binding Mes}" TextColor="#000" LineBreakMode="TailTruncation" />  
+	
+								</StackLayout>  
+									
+							</ViewCell>  
+							</DataTemplate>  
+						</ListView.ItemTemplate>  
+					</ListView>  
+				</StackLayout> 
+			</ContentPage.Content>
+
+		</ContentPage>
+
+		
+    </TabbedPage.Children>
+
+	
+</TabbedPage>

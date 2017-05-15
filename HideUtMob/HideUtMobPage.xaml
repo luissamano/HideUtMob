@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MasterDetailPage 
+				 xmlns="http://xamarin.com/schemas/2014/forms" 
+				 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+				 xmlns:local="clr-namespace:HideUtMob" 
+				 x:Class="HideUtMob.HideUtMobPage">
+
+
+	<MasterDetailPage.Master>
+		<ContentPage Padding="10" BackgroundColor="Gray" Title="Master" Icon="burgermenu.png">
+			<ContentPage.Content>
+				<StackLayout Margin="5,30,1,5">
+
+					<Label Text="Master Detail" />
+
+					<Button Text="Record" BackgroundColor="Transparent" Clicked="Handle_Clicked"> </Button>
+					<Button Text="Lote" BackgroundColor="Transparent" Clicked="Handle_Clicked1"> </Button>
+					
+				</StackLayout>
+			</ContentPage.Content>
+		</ContentPage>
+	</MasterDetailPage.Master>
+
+
+	<MasterDetailPage.Detail>
+		<ContentPage Padding="10">
+			<ContentPage.Content>
+				<StackLayout BackgroundColor="White">  
+					<ActivityIndicator IsVisible="{Binding IsBusy}"
+              						   IsRunning="{Binding IsBusy}"
+              						   Color="Black" />
+					
+					<ListView x:Name="lvData" RowHeight="180">  
+						<ListView.ItemTemplate>  
+							<DataTemplate>  
+							<ViewCell> 
+									
+								<StackLayout Orientation="Vertical" Padding="16,0,16,0"> 
+
+									<Label Text="{Binding Planta}" TextColor="#000" FontSize="14" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding Cueros}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding PercentageUt}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding HUtilizationVar}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding Mes}" TextColor="#000" LineBreakMode="TailTruncation" />  
+									<Label Text="{Binding Año}" TextColor="#000" LineBreakMode="TailTruncation" />  
+	
+								</StackLayout>  
+									
+							</ViewCell>  
+							</DataTemplate>  
+						</ListView.ItemTemplate>  
+					</ListView>  
+				</StackLayout> 
+			</ContentPage.Content>
+		</ContentPage>
+	</MasterDetailPage.Detail>
+	
+	
+</MasterDetailPage>
