@@ -7,7 +7,7 @@ namespace HideUtMob
 {
 	public partial class HideUtMobPage
 	{
-
+		
 		public HideUtMobPage()
 		{
 			InitializeComponent();
@@ -16,12 +16,50 @@ namespace HideUtMob
 		
 		public async void But()
 		{
-			HttpClient client = new HttpClient();
-			HttpResponseMessage res = await client.GetAsync("http://webapihideutilization.azurewebsites.net/api/Meses");
-			var json = await res.Content.ReadAsStringAsync();
-			var Items = JsonConvert.DeserializeObject<List<ModelMeses>>(json);
-			lvData.ItemsSource = Items;
+			try
+			{
+				indicator.IsRunning = true;
+				indLabel.Text = "Please wait...";
+				indicator.BindingContext = lvData;
+
+				HttpClient client = new HttpClient();
+				HttpResponseMessage res = await client.GetAsync("http://webapihideutilization.azurewebsites.net/api/Meses");
+				var json = await res.Content.ReadAsStringAsync();
+
+				var Items = JsonConvert.DeserializeObject<List<ModelMeses>>(json);
+
+
+
+
+			    lvData.ItemsSource = Items;
+				indicator.IsRunning = false;
+				indLabel.Text = "";
+			}
+			catch (HttpRequestException)
+			{
+				indLabel.Text = "";
+				indicator.IsRunning = false;
+				await DisplayAlert("Error Connection", "Verifica tu Conexion", "OK");
+			}
+			catch (JsonReaderException)
+			{
+				indLabel.Text = "";
+				indicator.IsRunning = false;
+				await DisplayAlert("Error Connection", "Error al leer los datos,\nreinicia la app", "OK");
+			}
+			catch (JsonSerializationException)
+			{
+				indLabel.Text = "";
+				indicator.IsRunning = false;
+				await DisplayAlert("Error Connection", "Error al leer los datos,\nVerifica tu Conexion y reinicia la app", "OK");
+			}
+
+
 		}
+
+
+
+				
 		
 		public class ModelMeses
 		{

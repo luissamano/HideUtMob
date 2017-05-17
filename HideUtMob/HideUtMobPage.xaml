@@ -3,7 +3,9 @@
 				 xmlns="http://xamarin.com/schemas/2014/forms" 
 				 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
 				 xmlns:local="clr-namespace:HideUtMob" 
-				 x:Class="HideUtMob.HideUtMobPage">
+				 x:Class="HideUtMob.HideUtMobPage"
+				 Title="GST Mexico">
+
 
 
 	<MasterDetailPage.Master>
@@ -22,29 +24,59 @@
 	</MasterDetailPage.Master>
 
 
+
 	<MasterDetailPage.Detail>
-		<ContentPage Padding="10">
+		
+		<ContentPage Padding="0,30,0,0">
 			<ContentPage.Content>
 				<StackLayout BackgroundColor="White">  
-					<ActivityIndicator IsVisible="{Binding IsBusy}"
-              						   IsRunning="{Binding IsBusy}"
-              						   Color="Black" />
-					
-					<ListView x:Name="lvData" RowHeight="180">  
+					<ActivityIndicator x:Name="indicator" IsRunning="false" Color="Blue" WidthRequest="20" HeightRequest="20" />
+					<Label x:Name="indLabel" TextColor="Blue" HorizontalOptions="Center" />
+					<ListView x:Name="lvData" RowHeight="200">  
 						<ListView.ItemTemplate>  
 							<DataTemplate>  
 							<ViewCell> 
-									
-								<StackLayout Orientation="Vertical" Padding="16,0,16,0"> 
 
-									<Label Text="{Binding Planta}" TextColor="#000" FontSize="14" LineBreakMode="TailTruncation" />  
-									<Label Text="{Binding Cueros}" TextColor="#000" LineBreakMode="TailTruncation" />  
-									<Label Text="{Binding PercentageUt}" TextColor="#000" LineBreakMode="TailTruncation" />  
-									<Label Text="{Binding HUtilizationVar}" TextColor="#000" LineBreakMode="TailTruncation" />  
-									<Label Text="{Binding Mes}" TextColor="#000" LineBreakMode="TailTruncation" />  
-									<Label Text="{Binding Año}" TextColor="#000" LineBreakMode="TailTruncation" />  
-	
-								</StackLayout>  
+								<StackLayout Spacing="5" Padding="0" Orientation="Vertical" 
+											 BackgroundColor="Transparent"  
+											 BackgroundImage="appfondo.png"  >
+										
+										<Grid>
+											
+											<Grid.ColumnDefinitions>
+												<ColumnDefinition Width="*"/>
+												<ColumnDefinition Width="AUTO"/>
+											</Grid.ColumnDefinitions>
+
+											<Grid.RowDefinitions>
+												<RowDefinition Height="*"/>
+												<RowDefinition Height="AUTO"/>
+											</Grid.RowDefinitions>
+
+											<StackLayout Grid.Row="1" Grid.Column="1" Orientation="Vertical" >
+												<Label Text="{Binding Planta}" TextColor="#000" FontSize="18"  FontFamily="Arial"/>
+												<Label Text="{Binding Mes}" TextColor="Black" />
+												<Label Text="{Binding Año}" TextColor="Black" />
+											</StackLayout>
+
+											<StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal" >
+												<Label Text="Hides:"/>
+												<Label Text="{Binding Cueros}" TextColor="#000" /> 
+												<Label Text="{Binding PercentageUt}" TextColor="Black" /> 
+												<Label Text="%"/>
+
+												<Label Text="{Binding HUtilizationVar}" TextColor="Black" />  
+												<Label Text="USD" />
+											</StackLayout>
+
+											
+
+											</Grid>
+
+										
+										</StackLayout>
+
+									
 									
 							</ViewCell>  
 							</DataTemplate>  

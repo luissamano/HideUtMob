@@ -16,11 +16,13 @@
 						<ListView.ItemTemplate>  
 							<DataTemplate>  
 							<ViewCell> 
-									
-								<StackLayout Orientation="Vertical" Padding="16,0,16,0"> 
 
+								<StackLayout  Padding="16,0,16,0">
 									<Label Text="{Binding Planta}" TextColor="#000" FontSize="14" LineBreakMode="TailTruncation" />  
 									<Label Text="{Binding Cueros}" TextColor="#000" LineBreakMode="TailTruncation" />  
+								</StackLayout>
+								<StackLayout Orientation="Vertical" Padding="16,0,16,0"> 
+
 									<Label Text="{Binding PercentageUt}" TextColor="#000" LineBreakMode="TailTruncation" />  
 									<Label Text="{Binding HUtilizationVar}" TextColor="#000" LineBreakMode="TailTruncation" />  
 									<Label Text="{Binding Mes}" TextColor="#000" LineBreakMode="TailTruncation" />  
