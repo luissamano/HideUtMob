@@ -11,8 +11,9 @@
 	<MasterDetailPage.Master>
 		<ContentPage Padding="10" BackgroundColor="Gray" Title="Master" Icon="burgermenu.png">
 			<ContentPage.Content>
-				<StackLayout Margin="5,30,1,5">
+				<StackLayout >
 
+					
 					<Label Text="Master Detail" />
 
 					<Button Text="Record" BackgroundColor="Transparent" Clicked="Handle_Clicked"> </Button>
@@ -26,62 +27,38 @@
 
 
 	<MasterDetailPage.Detail>
-		
-		<ContentPage Padding="0,30,0,0">
+		<ContentPage Padding="0,60,0,0">
 			<ContentPage.Content>
 				<StackLayout BackgroundColor="White">  
 					<ActivityIndicator x:Name="indicator" IsRunning="false" Color="Blue" WidthRequest="20" HeightRequest="20" />
 					<Label x:Name="indLabel" TextColor="Blue" HorizontalOptions="Center" />
-					<ListView x:Name="lvData" RowHeight="200">  
-						<ListView.ItemTemplate>  
-							<DataTemplate>  
-							<ViewCell> 
 
-								<StackLayout Spacing="5" Padding="0" Orientation="Vertical" 
-											 BackgroundColor="Transparent"  
-											 BackgroundImage="appfondo.png"  >
-										
-										<Grid>
-											
-											<Grid.ColumnDefinitions>
-												<ColumnDefinition Width="*"/>
-												<ColumnDefinition Width="AUTO"/>
-											</Grid.ColumnDefinitions>
+                    <Label Text="GST Mexico" HorizontalOptions="CenterAndExpand" />
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Hides: " HorizontalOptions="EndAndExpand" />
+                        <Label Text="{Binding Cueros}"  />
+                        <Label Text="Utilization $" HorizontalOptions="StartAndExpand" />
+                        <Label Text="{Binding HUtilizationVar}" />
+                        <Label Text="USD" />
+                    </StackLayout>
 
-											<Grid.RowDefinitions>
-												<RowDefinition Height="*"/>
-												<RowDefinition Height="AUTO"/>
-											</Grid.RowDefinitions>
-
-											<StackLayout Grid.Row="1" Grid.Column="1" Orientation="Vertical" >
-												<Label Text="{Binding Planta}" TextColor="#000" FontSize="18"  FontFamily="Arial"/>
-												<Label Text="{Binding Mes}" TextColor="Black" />
-												<Label Text="{Binding Año}" TextColor="Black" />
-											</StackLayout>
-
-											<StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal" >
-												<Label Text="Hides:"/>
-												<Label Text="{Binding Cueros}" TextColor="#000" /> 
-												<Label Text="{Binding PercentageUt}" TextColor="Black" /> 
-												<Label Text="%"/>
-
-												<Label Text="{Binding HUtilizationVar}" TextColor="Black" />  
-												<Label Text="USD" />
-											</StackLayout>
-
-											
-
-											</Grid>
-
-										
-										</StackLayout>
-
-									
-									
-							</ViewCell>  
-							</DataTemplate>  
-						</ListView.ItemTemplate>  
-					</ListView>  
+    <ListView x:Name="placeList" RowHeight="130" VerticalOptions="StartAndExpand"
+        BackgroundColor="Transparent">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>    
+                            <StackLayout Orientation="Vertical" >
+                                <Image Source="money.png" />
+                                <Label Text="{Binding Planta}"  />
+                                <Label Text="{Binding Cueros}"  />
+                                <Label Text="Utilization $: " />
+                                <Label Text="{Binding HUtilizationVar}" />
+                                <Label Text="USD" />
+                            </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        </ListView>
 				</StackLayout> 
 			</ContentPage.Content>
 		</ContentPage>

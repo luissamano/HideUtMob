@@ -5,6 +5,10 @@
 	x:Class="HideUtMob.Record"
 	Title="HideUt Mobile">
 
+	<ContentPage.ToolbarItems>
+    	<ToolbarItem x:Name="actualizar" Order="Primary" Text="Actualizar" Priority="0" />
+	</ContentPage.ToolbarItems>
+
 	<TabbedPage.Children>
 		
         <ContentPage Title="Month's">

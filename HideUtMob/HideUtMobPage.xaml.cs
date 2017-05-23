@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -7,33 +8,51 @@ namespace HideUtMob
 {
 	public partial class HideUtMobPage
 	{
-		
+
 		public HideUtMobPage()
 		{
+
 			InitializeComponent();
-            But();
+			Connectivity ins = new Connectivity();
+			if (ins.GetConn().Equals("Is Connected"))
+			{
+				But();
+			}
+			else
+			{
+				DisplayAlert("Connection error", "No internet\nconnection found", "OK");
+			}
+
 		}
-		
+
+
+
+
+
 		public async void But()
 		{
 			try
 			{
 				indicator.IsRunning = true;
 				indLabel.Text = "Please wait...";
-				indicator.BindingContext = lvData;
 
 				HttpClient client = new HttpClient();
-				HttpResponseMessage res = await client.GetAsync("http://webapihideutilization.azurewebsites.net/api/Meses");
+
+				HttpResponseMessage res = await client.GetAsync("http://leonmappserver/api/year");
 				var json = await res.Content.ReadAsStringAsync();
 
-				var Items = JsonConvert.DeserializeObject<List<ModelMeses>>(json);
+				var Items = JsonConvert.DeserializeObject<List<ClassJSON.ModelYear>>(json);
+
+				var datos = from p in Items
+                            orderby p.Planta ascending
+							select p;
 
 
-
-
-			    lvData.ItemsSource = Items;
 				indicator.IsRunning = false;
 				indLabel.Text = "";
+
+                placeList.ItemsSource = datos;
+                BindingContext = datos;
 			}
 			catch (HttpRequestException)
 			{
@@ -55,21 +74,18 @@ namespace HideUtMob
 			}
 
 
+
+
 		}
 
 
 
-				
-		
-		public class ModelMeses
-		{
-			public string Planta { get; set; }
-			public double Cueros { get; set; }
-			public double PercentageUt { get; set; }
-			public double HUtilizationVar { get; set; }
-			public int Mes { get; set; }
-			public int Año { get; set; }
-		}
+
+
+
+
+
+
 
 		void Handle_Clicked(object sender, System.EventArgs e)
 		{
@@ -78,8 +94,12 @@ namespace HideUtMob
 
 		void Handle_Clicked1(object sender, System.EventArgs e)
 		{
-			
+
 		}
+
+
+
+
 
 
 	}
