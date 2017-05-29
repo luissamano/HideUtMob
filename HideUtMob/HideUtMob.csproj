@@ -33,7 +33,16 @@
     <EmbeddedResource Include="Views\Record.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Filter.xaml">
+    <EmbeddedResource Include="Views\Oem.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Cons.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Prog.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\FilterConfig.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
@@ -49,10 +58,20 @@
       <DependentUpon>Record.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\ClassJSON.cs" />
-    <Compile Include="Views\Filter.xaml.cs">
-      <DependentUpon>Filter.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Services\Connectivity.cs" />
+    <Compile Include="Views\Oem.xaml.cs">
+      <DependentUpon>Oem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Cons.xaml.cs">
+      <DependentUpon>Cons.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Prog.xaml.cs">
+      <DependentUpon>Prog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FilterConfig.xaml.cs">
+      <DependentUpon>FilterConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Strings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">
@@ -81,7 +100,6 @@
     <Folder Include="Views\" />
     <Folder Include="Models\" />
     <Folder Include="Services\" />
-    <Folder Include="Helpers\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.2.3.4.247\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />

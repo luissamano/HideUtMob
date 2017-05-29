@@ -6,19 +6,23 @@
 				 x:Class="HideUtMob.HideUtMobPage"
 				 Title="GST Mexico">
 
+                
+
 
 
 	<MasterDetailPage.Master>
-		<ContentPage Padding="10" BackgroundColor="Gray" Title="Master" Icon="burgermenu.png">
+		<ContentPage Padding="10" BackgroundColor="Silver" Title="Master" Icon="burgermenu.png">
 			<ContentPage.Content>
-				<StackLayout >
-
-					
-					<Label Text="Master Detail" />
-
+				<StackLayout AnchorX="10" >
+                    
 					<Button Text="Record" BackgroundColor="Transparent" Clicked="Handle_Clicked"> </Button>
-					<Button Text="Lote" BackgroundColor="Transparent" Clicked="Handle_Clicked1"> </Button>
-					
+					<Button Text="Oem" BackgroundColor="Transparent" Clicked="Handle_Clicked1"> </Button>
+                    <Button Text="Constrution" BackgroundColor="Transparent" Clicked="Handle_Clicked2"> </Button>
+                    <Button Text="Programs" BackgroundColor="Transparent" Clicked="Handle_Clicked3"> </Button>
+
+                    <Button Text="Info" BackgroundColor="Transparent" Clicked="Handle_Clicked6" ></Button>		
+
+
 				</StackLayout>
 			</ContentPage.Content>
 		</ContentPage>
@@ -27,40 +31,64 @@
 
 
 	<MasterDetailPage.Detail>
-		<ContentPage Padding="0,60,0,0">
+		<ContentPage Padding="0,60,7.5,0" x:Name="NAV" >
+
+        
+            
 			<ContentPage.Content>
-				<StackLayout BackgroundColor="White">  
-					<ActivityIndicator x:Name="indicator" IsRunning="false" Color="Blue" WidthRequest="20" HeightRequest="20" />
+				<StackLayout BackgroundColor="White" >
+                    <Button Text="Reload" IsVisible="true" Clicked="Handle_Clicked4" HorizontalOptions="End" />
+                    <ActivityIndicator x:Name="indicator" IsRunning="false" Color="Blue" WidthRequest="20" HeightRequest="20" />
 					<Label x:Name="indLabel" TextColor="Blue" HorizontalOptions="Center" />
+                    <ListView x:Name="lvInicio" RowHeight="130" ItemsSource="{Binding .}" SeparatorVisibility="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid RowSpacing="5" Margin="10,5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="AUTO"/>
+                                            </Grid.RowDefinitions>
 
-                    <Label Text="GST Mexico" HorizontalOptions="CenterAndExpand" />
-                    <StackLayout Orientation="Horizontal">
-                        <Label Text="Hides: " HorizontalOptions="EndAndExpand" />
-                        <Label Text="{Binding Cueros}"  />
-                        <Label Text="Utilization $" HorizontalOptions="StartAndExpand" />
-                        <Label Text="{Binding HUtilizationVar}" />
-                        <Label Text="USD" />
+                                            <Image Source="blueleather.png" Aspect="AspectFill" Grid.RowSpan="2" />
+
+                                            <Grid Margin="10" RowSpacing="10" ColumnSpacing="5" Grid.Row="1">
+                                            
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="AUTO"/>
+                                                    <RowDefinition Height="25"/>
+                                                    <RowDefinition Height="25"/>
+                                                </Grid.RowDefinitions>
+                                            
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="AUTO"/>
+                                                    <ColumnDefinition Width="AUTO"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Label Text="{Binding Planta}" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}" />
+
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Grid.Row="1" Spacing="2">
+                                                    <Label Text="Cueros: " Style="{StaticResource BodyLabel}" />
+                                                    <Label Text="{Binding Cueros}"  Style="{StaticResource HandleLabel}" />
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Grid.Row="2" Spacing="5">
+                                                    <!-- <Image Source="money.png" Grid.Row="1" /> -->
+                                                    <Label Text="Utilization $: " Style="{StaticResource BodyLabel}"/>
+                                                    <Label Text="{Binding HUtilizationVar}" Style="{StaticResource HandleLabel}" />
+                                                    <Label Text="USD" Style="{StaticResource BodyLabel}"/>
+                                                </StackLayout>
+
+                                            
+                                            </Grid>
+                                        
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </StackLayout>
-
-    <ListView x:Name="placeList" RowHeight="130" VerticalOptions="StartAndExpand"
-        BackgroundColor="Transparent">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>    
-                            <StackLayout Orientation="Vertical" >
-                                <Image Source="money.png" />
-                                <Label Text="{Binding Planta}"  />
-                                <Label Text="{Binding Cueros}"  />
-                                <Label Text="Utilization $: " />
-                                <Label Text="{Binding HUtilizationVar}" />
-                                <Label Text="USD" />
-                            </StackLayout>
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-        </ListView>
-				</StackLayout> 
 			</ContentPage.Content>
+                
 		</ContentPage>
 	</MasterDetailPage.Detail>
 	

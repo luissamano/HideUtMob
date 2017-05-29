@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="HideUtMob.App">
+<Application xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="HideUtMob.App">
+
+    
 	<Application.Resources>
 		<!-- Application resource dictionary -->
 
@@ -34,15 +38,15 @@
             <Font
                 x:Key="TitleFont"
                 FontFamily="{StaticResource BoldFontFamily}"
-                FontSize="20" />
+                FontSize="40" />
             <Font
                 x:Key="HandleFont"
                 FontFamily="{StaticResource BoldFontFamily}"
-                FontSize="12" />
+                FontSize="18" />
             <Font
                 x:Key="BodyFont"
                 FontFamily="{StaticResource LightFontFamily}"
-                FontSize="12" />
+                FontSize="18" />
 
 
             <!--  styles  -->

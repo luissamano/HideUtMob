@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using HideUtMob.Views;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace HideUtMob
 {
-	public partial class HideUtMobPage
+    public partial class HideUtMobPage 
 	{
 
 		public HideUtMobPage()
@@ -51,7 +52,6 @@ namespace HideUtMob
 				indicator.IsRunning = false;
 				indLabel.Text = "";
 
-                placeList.ItemsSource = datos;
                 BindingContext = datos;
 			}
 			catch (HttpRequestException)
@@ -61,7 +61,7 @@ namespace HideUtMob
 				await DisplayAlert("Error Connection", "Verifica tu Conexion", "OK");
 			}
 			catch (JsonReaderException)
-			{
+            {
 				indLabel.Text = "";
 				indicator.IsRunning = false;
 				await DisplayAlert("Error Connection", "Error al leer los datos,\nreinicia la app", "OK");
@@ -94,13 +94,36 @@ namespace HideUtMob
 
 		void Handle_Clicked1(object sender, System.EventArgs e)
 		{
-
+            Detail = new NavigationPage(new Oem());
 		}
 
+        void Handle_Clicked2(object sender, System.EventArgs e)
+        {
+            Detail = new NavigationPage(new Cons());
+        }
 
 
+        void Handle_Clicked3(object sender, System.EventArgs e)
+        {
+            Detail = new NavigationPage(new Prog());
+        }
+        
 
+        void Handle_Clicked4(object sender, System.EventArgs e)
+        {
+            But();
+        }
 
+        void Handle_Clicked5(object sender, System.EventArgs e)
+        {
+            Detail = new NavigationPage(new FilterConfig());
+        }
 
-	}
+        void Handle_Clicked6(object sender, System.EventArgs e)
+        {
+            DisplayAlert("About",
+                         "This application is privately owned by GST AutoLeather. Developed by the team of IT Leon", 
+                         "OK");
+        }
+    }
 }

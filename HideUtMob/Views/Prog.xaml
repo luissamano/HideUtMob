@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TabbedPage 
-	xmlns="http://xamarin.com/schemas/2014/forms" 
-	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-	x:Class="HideUtMob.Record"
-	Title="HideUt Mobile">
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="HideUtMob.Views.Prog"
+            Title="Programs">
 
-	<ContentPage.ToolbarItems>
-    	<ToolbarItem x:Name="actualizar" Order="Primary" Text="Actualizar" Priority="0" />
-	</ContentPage.ToolbarItems>
 
-   
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="actualizar" Order="Primary" Text="Actualizar" Clicked="Handle_Clicked" Priority="0" />
+    </ContentPage.ToolbarItems>
 
-    
-	<TabbedPage.Children>
 
-        
+    <TabbedPage.Children>
+
         <ContentPage Title="Month's" >
-			<ContentPage.Content>
-				<StackLayout BackgroundColor="White" >
+            <ContentPage.Content>
+                <StackLayout BackgroundColor="White" >
                     <ActivityIndicator x:Name="indicator1" IsRunning="false" Color="Blue" WidthRequest="20" HeightRequest="20" />
                     <Label x:Name="indLabel1" TextColor="Blue" HorizontalOptions="Center" />
                     <ListView x:Name="lvInicio1" RowHeight="170" SeparatorVisibility="None">
@@ -71,14 +68,14 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
-			</ContentPage.Content>
+            </ContentPage.Content>
 
-			
-		</ContentPage>
-		
+            
+        </ContentPage>
+        
         <ContentPage Title="Week's" >
 
-			<ContentPage.Content>                
+            <ContentPage.Content>                
 
                     <StackLayout BackgroundColor="White" >
                     <ActivityIndicator x:Name="indicator2" IsRunning="false" Color="Blue" WidthRequest="20" HeightRequest="20" />
@@ -134,25 +131,25 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
-			</ContentPage.Content>
+            </ContentPage.Content>
 
-		</ContentPage>
+        </ContentPage>
 
 
-		<ContentPage Title="Day's">
+        <ContentPage Title="Day's">
 
-        	<ContentPage.Content>
-				<StackLayout BackgroundColor="White">  
-					
-					
-			 
-				</StackLayout> 
-			</ContentPage.Content>
+            <ContentPage.Content>
+                <StackLayout BackgroundColor="White">  
+                    
+                    
+             
+                </StackLayout> 
+            </ContentPage.Content>
 
-		</ContentPage>
+        </ContentPage>
 
-		
-    </TabbedPage.Children>
+   
+   </TabbedPage.Children>
 
-	
+    
 </TabbedPage>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    		 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    	     x:Class="HideUtMob.Views.FilterConfig"
+		     Title="Filters">
+
+    
+	<ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="OK" Order="Primary" Text="Actualizar" Priority="0" />
+    </ContentPage.ToolbarItems>
+
+
+    <ContentPage.Content >
+
+        <Grid ColumnSpacing="210">
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="AUTO"/>
+                <ColumnDefinition Width="AUTO"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+            </Grid.RowDefinitions>
+            
+            <StackLayout Orientation="Vertical" VerticalOptions="Center"  Grid.Column="0" Spacing="20">
+x
+	       	
+	        </StackLayout>
+	        
+            <StackLayout Orientation="Vertical" Grid.Column="1" >
+            	
+	       	    <Switch x:Name="all" IsToggled="true" ></Switch>
+	       	    <Switch x:Name="oem" IsToggled="true" ></Switch>
+	       	    <Switch x:Name="con" IsToggled="true"  ></Switch>
+	       	    <Switch x:Name="pro" IsToggled="true"  ></Switch>
+            
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+
+    
+</ContentPage>
