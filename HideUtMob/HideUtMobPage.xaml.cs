@@ -13,7 +13,7 @@ namespace HideUtMob
 		public HideUtMobPage()
 		{
 
-			InitializeComponent();
+            InitializeComponent();
 			Connectivity ins = new Connectivity();
 			if (ins.GetConn().Equals("Is Connected"))
 			{
@@ -35,14 +35,14 @@ namespace HideUtMob
 			try
 			{
 				indicator.IsRunning = true;
-				indLabel.Text = "Please wait...";
+				//indLabel.Text = "Please wait...";
 
 				HttpClient client = new HttpClient();
 
-				HttpResponseMessage res = await client.GetAsync("http://leonmappserver/api/year");
+				HttpResponseMessage res = await client.GetAsync("http://172.16.16.8:8082/api/vwYears");
 				var json = await res.Content.ReadAsStringAsync();
 
-				var Items = JsonConvert.DeserializeObject<List<ClassJSON.ModelYear>>(json);
+				var Items = JsonConvert.DeserializeObject<List<ClassJSON.ModelYear>>(json).Distinct();
 
 				var datos = from p in Items
                             orderby p.Planta ascending
@@ -50,25 +50,25 @@ namespace HideUtMob
 
 
 				indicator.IsRunning = false;
-				indLabel.Text = "";
+				//indLabel.Text = "";
 
                 BindingContext = datos;
 			}
 			catch (HttpRequestException)
 			{
-				indLabel.Text = "";
+				//indLabel.Text = "";
 				indicator.IsRunning = false;
 				await DisplayAlert("Error Connection", "Verifica tu Conexion", "OK");
 			}
 			catch (JsonReaderException)
             {
-				indLabel.Text = "";
+				//indLabel.Text = "";
 				indicator.IsRunning = false;
 				await DisplayAlert("Error Connection", "Error al leer los datos,\nreinicia la app", "OK");
 			}
 			catch (JsonSerializationException)
 			{
-				indLabel.Text = "";
+				//indLabel.Text = "";
 				indicator.IsRunning = false;
 				await DisplayAlert("Error Connection", "Error al leer los datos,\nVerifica tu Conexion y reinicia la app", "OK");
 			}
@@ -106,8 +106,7 @@ namespace HideUtMob
         void Handle_Clicked3(object sender, System.EventArgs e)
         {
             Detail = new NavigationPage(new Prog());
-        }
-        
+        }      
 
         void Handle_Clicked4(object sender, System.EventArgs e)
         {

@@ -10,7 +10,11 @@ using Android.OS;
 
 namespace HideUtMob.Droid
 {
-	[Activity(Label = "HideUt Mobile", Icon = "@drawable/iconlea", Theme = "@style/MyTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+	[Activity(Label = "HideUt Mobile", Icon = "@drawable/iconlea", 
+              Theme = "@style/MyTheme", MainLauncher = true, 
+              ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+
+
 	public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
 	{
 		protected override void OnCreate(Bundle bundle)

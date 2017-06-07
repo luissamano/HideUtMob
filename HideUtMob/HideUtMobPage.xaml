@@ -14,13 +14,14 @@
 		<ContentPage Padding="10" BackgroundColor="Silver" Title="Master" Icon="burgermenu.png">
 			<ContentPage.Content>
 				<StackLayout AnchorX="10" >
-                    
-					<Button Text="Record" BackgroundColor="Transparent" Clicked="Handle_Clicked"> </Button>
-					<Button Text="Oem" BackgroundColor="Transparent" Clicked="Handle_Clicked1"> </Button>
-                    <Button Text="Constrution" BackgroundColor="Transparent" Clicked="Handle_Clicked2"> </Button>
-                    <Button Text="Programs" BackgroundColor="Transparent" Clicked="Handle_Clicked3"> </Button>
 
-                    <Button Text="Info" BackgroundColor="Transparent" Clicked="Handle_Clicked6" ></Button>		
+                    <Label Text="Master Detail" Style="{StaticResource BodyLabel}" />
+                    
+					<Button Text="Record" BackgroundColor="Transparent" Clicked="Handle_Clicked" FontFamily="Arial"> </Button>
+					<Button Text="Oem" BackgroundColor="Transparent" Clicked="Handle_Clicked1" FontFamily="Arial"> </Button>
+                    <Button Text="Constrution" BackgroundColor="Transparent" Clicked="Handle_Clicked2" FontFamily="Arial"> </Button>
+                    <Button Text="Programs" BackgroundColor="Transparent" Clicked="Handle_Clicked3" FontFamily="Arial"> </Button>
+                    <Button Text="Info" BackgroundColor="Transparent" Clicked="Handle_Clicked6" FontFamily="Arial"></Button>		
 
 
 				</StackLayout>
@@ -31,16 +32,14 @@
 
 
 	<MasterDetailPage.Detail>
-		<ContentPage Padding="0,60,7.5,0" x:Name="NAV" >
-
-        
-            
+    
+		<ContentPage x:Name="NAV" >
 			<ContentPage.Content>
 				<StackLayout BackgroundColor="White" >
-                    <Button Text="Reload" IsVisible="true" Clicked="Handle_Clicked4" HorizontalOptions="End" />
+                    <Label Text="GST Mexico:" Style="{StaticResource BodyLabel}" TextColor="Black"/>
                     <ActivityIndicator x:Name="indicator" IsRunning="false" Color="Blue" WidthRequest="20" HeightRequest="20" />
 					<Label x:Name="indLabel" TextColor="Blue" HorizontalOptions="Center" />
-                    <ListView x:Name="lvInicio" RowHeight="130" ItemsSource="{Binding .}" SeparatorVisibility="None">
+                    <ListView x:Name="lvInicio" RowHeight="130" ItemsSource="{Binding .}" SeparatorVisibility="None"  >
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -65,7 +64,7 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <Label Text="{Binding Planta}" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}" />
-
+                                            
                                                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Grid.Row="1" Spacing="2">
                                                     <Label Text="Cueros: " Style="{StaticResource BodyLabel}" />
                                                     <Label Text="{Binding Cueros}"  Style="{StaticResource HandleLabel}" />

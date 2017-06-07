@@ -6,7 +6,7 @@
 
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem x:Name="actualizar" Order="Primary" Clicked="Handle_Clicked" Text="Actualizar" Priority="0" />
+        <ToolbarItem x:Name="actualizar" Order="Primary" Clicked="ActualizarOemPage" Text="Actualizar" Priority="0" />
     </ContentPage.ToolbarItems>
 
 
@@ -17,7 +17,7 @@
                 <StackLayout BackgroundColor="White" >
                     <ActivityIndicator x:Name="indicator1" IsRunning="false" Color="Blue" WidthRequest="20" HeightRequest="20" />
                     <Label x:Name="indLabel1" TextColor="Blue" HorizontalOptions="Center" />
-                    <ListView x:Name="lvInicio1" RowHeight="170" SeparatorVisibility="None">
+                    <ListView x:Name="lvInicio1" RowHeight="190" SeparatorVisibility="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -32,10 +32,10 @@
                                             
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="AUTO"/>
-                                                    <RowDefinition Height="25"/>
-                                                    <RowDefinition Height="25"/>
-                                                    <RowDefinition Height="25"/>
-                                                    <RowDefinition Height="25"/>
+                                                    <RowDefinition Height="20"/>
+                                                    <RowDefinition Height="20"/>
+                                                    <RowDefinition Height="20"/>
+                                                    <RowDefinition Height="20"/>
                                                 </Grid.RowDefinitions>
                                             
                                                 <Grid.ColumnDefinitions>
@@ -43,10 +43,11 @@
                                                     <ColumnDefinition Width="AUTO"/>
                                                 </Grid.ColumnDefinitions>
 
-                                                <Label Text="{Binding Planta}" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}" />
-                                                <Label Text="{Binding Mes}" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}"/>
-                                                 <Label Text="{Binding Año}" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}"/>
-
+                                                <Label Text="{Binding Planta}" Grid.Row="0"  Style="{StaticResource HandleLabel}" />
+                                                <Label Text="{Binding Mes}" Grid.Row="1" Style="{StaticResource HandleLabel}"/>
+                                                <Label Text="{Binding Año}" Grid.Row="2" Style="{StaticResource HandleLabel}"/>
+                                                <Image Source="mo.png" />
+                                            
                                                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Grid.Row="3" Spacing="2">
                                                     <Label Text="Cueros: " Style="{StaticResource BodyLabel}" />
                                                     <Label Text="{Binding Cueros}"  Style="{StaticResource HandleLabel}" />
@@ -144,8 +145,12 @@
 
             
             <ContentPage.Content>
-                <StackLayout BackgroundColor="White">  
-                    
+                <StackLayout BackgroundColor="White"> 
+
+                    <Picker x:Name="OemPicker" Title="Selecciona una Oem" IsEnabled="false" ItemsSource="{Binding DatosOem}" ItemDisplayBinding="{Binding DescrOem}"/>
+                    <DatePicker x:Name="fechaOem" Date="{Binding TheDate}" VerticalOptions="Center" ></DatePicker>
+                    <ActivityIndicator x:Name="indicator3" IsRunning="false" Color="Blue" WidthRequest="20" HeightRequest="20" />
+                    <Label x:Name="indLabel3" TextColor="Blue" HorizontalOptions="Center" />
                     
              
                 </StackLayout> 

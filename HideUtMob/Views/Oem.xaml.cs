@@ -5,6 +5,8 @@ using Xamarin.Forms;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Linq;
+using static HideUtMob.ClassJSON;
 
 namespace HideUtMob.Views
 {
@@ -12,13 +14,32 @@ namespace HideUtMob.Views
     {
 
 
+		DateTime theDate = DateTime.Now;
+        Connectivity ins = new Connectivity();
+
+		public DateTime TheDate
+		{
+			get
+			{
+				return theDate;
+			}
+
+			set
+			{
+				theDate = value;
+				OnPropertyChanged();
+			}
+		}
+
+
         public Oem()
         {
             InitializeComponent();
-			Connectivity ins = new Connectivity();
 			if (ins.GetConn().Equals("Is Connected"))
 			{
-                //Datos();
+                ButMes();
+                ButSem();
+                ButDia();
 			}
 			else
 			{
@@ -28,7 +49,7 @@ namespace HideUtMob.Views
 
 
 
-		public async void But()
+		public async void ButMes()
 		{
 			try
 			{
@@ -37,20 +58,16 @@ namespace HideUtMob.Views
 
 				HttpClient client = new HttpClient();
 
-				HttpResponseMessage res = await client.GetAsync("http://leonmappserver/api/year");
+				HttpResponseMessage res = await client.GetAsync("http://172.16.16.8:85/api/oemmes");
 				var json = await res.Content.ReadAsStringAsync();
 
-				var Items = JsonConvert.DeserializeObject<List<ClassJSON.ModelYear>>(json);
-
-				/*var datos = from p in Items
-							orderby p.Planta ascending
-							select p;*/
+                var datos = JsonConvert.DeserializeObject<List<ModelMeses>>(json).OrderBy(p => p.Mes).ToList();
 
 
-				indicator1.IsRunning = false;
+                indicator1.IsRunning = false;
 				indLabel1.Text = "";
 
-                //BindingContext = datos;
+                lvInicio1.ItemsSource = datos;
 			}
 			catch (HttpRequestException)
 			{
@@ -74,10 +91,107 @@ namespace HideUtMob.Views
 		}
 
 
+		public async void ButSem()
+		{
+			try
+			{
+				indicator2.IsRunning = true;
+				indLabel2.Text = "Please wait...";
 
-        void Handle_Clicked(object sender, System.EventArgs e)
+				HttpClient client = new HttpClient();
+
+				HttpResponseMessage res = await client.GetAsync("http://172.16.16.8:85/api/oemsemana");
+				var json = await res.Content.ReadAsStringAsync();
+
+                var datos = JsonConvert.DeserializeObject<List<ModelSemanas>>(json).OrderBy(p => p.Semana).ToList();
+
+
+
+
+				indicator2.IsRunning = false;
+				indLabel2.Text = "";
+
+				lvInicio2.ItemsSource = datos;
+			}
+			catch (HttpRequestException)
+			{
+				indLabel2.Text = "";
+				indicator2.IsRunning = false;
+				await DisplayAlert("Error Connection", "Verifica tu Conexion", "OK");
+			}
+			catch (JsonReaderException)
+			{
+				indLabel2.Text = "";
+				indicator2.IsRunning = false;
+				await DisplayAlert("Error Connection", "Error al leer los datos,\nreinicia la app", "OK");
+			}
+			catch (JsonSerializationException)
+			{
+				indLabel2.Text = "";
+				indicator2.IsRunning = false;
+				await DisplayAlert("Error Connection", "Error al leer los datos,\nVerifica tu Conexion y reinicia la app", "OK");
+			}
+
+		}
+
+        public async void ButDia()
         {
-            But();
+			try
+			{
+				indicator3.IsRunning = true;
+				indLabel3.Text = "Please wait...";
+
+				HttpClient client = new HttpClient();
+
+				HttpResponseMessage res = await client.GetAsync("http://172.16.16.8:85/api/oem");
+				var json = await res.Content.ReadAsStringAsync();
+
+                var DatosOem = JsonConvert.DeserializeObject<List<ModelOem>>(json).OrderBy(p => p.DescrOem).ToList();
+
+				indicator3.IsRunning = false;
+				indLabel3.Text = "";
+
+                OemPicker.IsEnabled = true;
+                OemPicker.ItemsSource = DatosOem;
+			}
+			catch (HttpRequestException)
+			{
+				indLabel3.Text = "";
+				indicator3.IsRunning = false;
+				await DisplayAlert("Error Connection", "Verifica tu Conexion", "OK");
+			}
+			catch (JsonReaderException)
+			{
+				indLabel3.Text = "";
+				indicator3.IsRunning = false;
+				await DisplayAlert("Error Connection", "Error al leer los datos,\nreinicia la app", "OK");
+			}
+			catch (JsonSerializationException)
+			{
+				indLabel3.Text = "";
+				indicator3.IsRunning = false;
+				await DisplayAlert("Error Connection", "Error al leer los datos,\nVerifica tu Conexion y reinicia la app", "OK");
+			}
+        }
+
+
+
+
+
+
+
+        void ActualizarOemPage(object sender, System.EventArgs e)
+        {
+			if (ins.GetConn().Equals("Is Connected"))
+			{
+				ButMes();
+				ButSem();
+                ButDia();
+			}
+			else
+			{
+				DisplayAlert("Connection error", "No internet\nconnection found", "OK");
+			}
         }
 
 
