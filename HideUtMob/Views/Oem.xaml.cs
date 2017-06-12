@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
 using System.Linq;
-using static HideUtMob.ClassJSON;
+using static HideUtMob.Models.ClassJsonOem;
 
 namespace HideUtMob.Views
 {
@@ -61,7 +61,7 @@ namespace HideUtMob.Views
 				HttpResponseMessage res = await client.GetAsync("http://172.16.16.8:85/api/oemmes");
 				var json = await res.Content.ReadAsStringAsync();
 
-                var datos = JsonConvert.DeserializeObject<List<ModelMeses>>(json).OrderBy(p => p.Mes).ToList();
+                var datos = JsonConvert.DeserializeObject<List<ClassJsonOemMes>>(json).OrderBy(p => p.Mes).ToList();
 
 
                 indicator1.IsRunning = false;
@@ -103,7 +103,7 @@ namespace HideUtMob.Views
 				HttpResponseMessage res = await client.GetAsync("http://172.16.16.8:85/api/oemsemana");
 				var json = await res.Content.ReadAsStringAsync();
 
-                var datos = JsonConvert.DeserializeObject<List<ModelSemanas>>(json).OrderBy(p => p.Semana).ToList();
+                var datos = JsonConvert.DeserializeObject<List<ClassJsonOemSem>>(json).OrderBy(p => p.Semana).ToList();
 
 
 
@@ -146,7 +146,7 @@ namespace HideUtMob.Views
 				HttpResponseMessage res = await client.GetAsync("http://172.16.16.8:85/api/oem");
 				var json = await res.Content.ReadAsStringAsync();
 
-                var DatosOem = JsonConvert.DeserializeObject<List<ModelOem>>(json).OrderBy(p => p.DescrOem).ToList();
+                var DatosOem = JsonConvert.DeserializeObject<List<ClassOems>>(json).OrderBy(p => p.DescrOem).ToList();
 
 				indicator3.IsRunning = false;
 				indLabel3.Text = "";

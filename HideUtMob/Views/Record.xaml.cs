@@ -34,7 +34,7 @@ namespace HideUtMob
 			InitializeComponent();
             ButMes();
 			ButSem();
-			ButDia();
+			//ButDia();
 		}
 		
 		public async void ButMes()
@@ -51,18 +51,13 @@ namespace HideUtMob
 
                 var Items1 = JsonConvert.DeserializeObject<List<ModelMeses>>(json1);
 
-                var datames = from a in Items1
-                              orderby 
-                                         a.Mes ascending,
-                                         a.Año ascending
 
-                              select a;
 
 
                 indicator1.IsRunning = false;
                 indLabel1.Text = "";
 
-                lvInicio1.ItemsSource = datames;
+                lvInicio1.ItemsSource = Items1.OrderBy(x => x.Mes);
 			}
 			catch (HttpRequestException)
 			{
@@ -115,20 +110,20 @@ namespace HideUtMob
 			}
 			catch (HttpRequestException)
 			{
-				indLabel1.Text = "";
-				indicator1.IsRunning = false;
+				indLabel2.Text = "";
+				indicator2.IsRunning = false;
 				await DisplayAlert("Error Connection", "Verifica tu Conexion", "OK");
 			}
 			catch (JsonReaderException)
 			{
-				indLabel1.Text = "";
-				indicator1.IsRunning = false;
+				indLabel2.Text = "";
+				indicator2.IsRunning = false;
 				await DisplayAlert("Error Connection", "Error al leer los datos,\nreinicia la app", "OK");
 			}
 			catch (JsonSerializationException)
 			{
-				indLabel1.Text = "";
-				indicator1.IsRunning = false;
+				indLabel2.Text = "";
+				indicator2.IsRunning = false;
 				await DisplayAlert("Error Connection", "Error al leer los datos,\nVerifica tu Conexion y reinicia la app", "OK");
 			}
 
@@ -136,40 +131,50 @@ namespace HideUtMob
 		}
 
 
-        public async void ButDia ()
+        async void ButDia(object sender, System.EventArgs e)
         {
 
 			try
 			{
 
+				indicator3.IsRunning = true;
+				indLabel3.Text = "Please wait...";
+
+                DateTime fecha = fechaRec.Date.ToLocalTime();
+
 				HttpClient client = new HttpClient();
-				HttpResponseMessage res = await client.GetAsync("http://172.16.16.8:8082/api/fechahide");
+				HttpResponseMessage res = await client.GetAsync("http://172.16.16.8:8082/api/diashide");
 				var json = await res.Content.ReadAsStringAsync();
 
-				var Items = JsonConvert.DeserializeObject<List<ModelSemanas>>(json);
+                var Items = JsonConvert.DeserializeObject<List<ModelDias>>(json);
 
-				var datasem = from a in Items
-							  orderby
-										 a.Semana ascending,
-										 a.Año ascending
-
-							  select a;
+                var datasem = from n in Items
+                        where n.Fecha.Year  == fecha.Year && n.Fecha.Day == fecha.Day && n.Fecha.Month == fecha.Month
+                              orderby n.Planta
+                              select n;
 
 
-				fechaRec.IsEnabled = true;
-
+                indicator3.IsRunning = false;
+				indLabel3.Text = "";
+				lvInicio3.ItemsSource = datasem;
 
 			}
 			catch (HttpRequestException)
 			{
+				indicator3.IsRunning = false;
+				indLabel3.Text = "";
 				await DisplayAlert("Error Fecha", "Verifica tu Conexion", "OK");
 			}
 			catch (JsonReaderException)
 			{
+				indicator3.IsRunning = false;
+				indLabel3.Text = "";
 				await DisplayAlert("Error Fecha", "Error al leer los datos,\nreinicia la app", "OK");
 			}
 			catch (JsonSerializationException)
 			{
+				indicator3.IsRunning = false;
+				indLabel3.Text = "";
 				await DisplayAlert("Error Fecha", "Error al leer los datos,\nVerifica tu Conexion y reinicia la app", "OK");
 			}
             

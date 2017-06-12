@@ -35,7 +35,7 @@ namespace HideUtMob
 			try
 			{
 				indicator.IsRunning = true;
-				//indLabel.Text = "Please wait...";
+				indLabel.Text = "Please wait...";
 
 				HttpClient client = new HttpClient();
 

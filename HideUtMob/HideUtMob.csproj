@@ -71,6 +71,7 @@
     <Compile Include="Views\FilterConfig.xaml.cs">
       <DependentUpon>FilterConfig.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\ClassJsonOem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json">

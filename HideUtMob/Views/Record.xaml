@@ -29,11 +29,12 @@
                                                 <RowDefinition Height="AUTO"/>
                                             </Grid.RowDefinitions>
 
-                                            <Image Source="blueleather.png" Aspect="AspectFill" Grid.RowSpan="2" />
+                                            <Image Source="hidered.jpeg" Aspect="AspectFill" Grid.RowSpan="2" />
 
                                             <Grid Margin="10" RowSpacing="10" ColumnSpacing="5" Grid.Row="1">
                                             
                                                 <Grid.RowDefinitions>
+                                                    <RowDefinition Height="AUTO"/>
                                                     <RowDefinition Height="AUTO"/>
                                                     <RowDefinition Height="AUTO"/>
                                                     <RowDefinition Height="25"/>
@@ -44,18 +45,33 @@
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="AUTO"/>
                                                     <ColumnDefinition Width="AUTO"/>
+                                                    <ColumnDefinition Width="AUTO"/>
                                                 </Grid.ColumnDefinitions>
 
-                                                <Label Text="{Binding Planta}" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}" />
-                                                <Label Text="{Binding Año}" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}"/>
-                                                <Label Text="{Binding Mes}" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}"/>
-                                                <Image Source="mon.png" />
-                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Grid.Row="3" Spacing="2">
+
+                                            
+
+                                                <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="0" >
+                                                    <Label Text="Location" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" Style="{StaticResource BodyLabel}"/>
+                                                    <Label Text="Year" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" Style="{StaticResource BodyLabel}"/>
+                                                    <Label Text="Month" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="2" Style="{StaticResource BodyLabel}"/>
+                                                </StackLayout>
+                                            
+                                                <StackLayout Orientation="Horizontal" Grid.Column="0" Grid.Row="2" >
+                                                    <Label Text="{Binding Planta}" Grid.Row="0" Grid.ColumnSpan="3" Grid.Column="0" Style="{StaticResource HandleLabel}"/>
+                                                    <Label Text="{Binding Año}" Grid.Row="1" Grid.ColumnSpan="3" Grid.Column="1" Style="{StaticResource HandleLabel}"/>
+                                                    <Label Text="{Binding Mes}" Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="2" Style="{StaticResource HandleLabel}"/>
+                                                </StackLayout>
+
+                                            
+
+
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="0" Grid.Row="3" Spacing="2">
                                                     <Label Text="Cueros: " Style="{StaticResource BodyLabel}" />
                                                     <Label Text="{Binding Cueros}"  Style="{StaticResource HandleLabel}" />
                                                 </StackLayout>
 
-                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Grid.Row="4" Spacing="5">
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="0" Grid.Row="4" Spacing="5">
                                                     <!-- <Image Source="money.png" Grid.Row="1" /> -->
                                                     <Label Text="Utilization $: " Style="{StaticResource BodyLabel}"/>
                                                     <Label Text="{Binding HUtilizationVar}" Style="{StaticResource HandleLabel}" />
@@ -99,9 +115,9 @@
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="AUTO"/>
                                                     <RowDefinition Height="AUTO"/>
-                                                    <RowDefinition Height="25"/>
-                                                    <RowDefinition Height="25"/>
-                                                    <RowDefinition Height="25"/>
+                                                    <RowDefinition Height="AUTO"/>
+                                                    <RowDefinition Height="AUTO"/>
+                                                    <RowDefinition Height="AUTO"/>
                                                 </Grid.RowDefinitions>
                                             
                                                 <Grid.ColumnDefinitions>
@@ -109,16 +125,17 @@
                                                     <ColumnDefinition Width="AUTO"/>
                                                 </Grid.ColumnDefinitions>
 
+                                            
                                                 <Label Text="{Binding Planta}" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}" />
                                                 <Label Text="{Binding Año}" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}"/>
                                                 <Label Text="{Binding Semana}" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}"/>
 
-                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Grid.Row="1" Spacing="2">
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Grid.Row="4" Spacing="2">
                                                     <Label Text="Cueros: " Style="{StaticResource BodyLabel}" />
                                                     <Label Text="{Binding Cueros}"  Style="{StaticResource HandleLabel}" />
                                                 </StackLayout>
 
-                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Grid.Row="2" Spacing="5">
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Grid.Row="5" Spacing="5">
                                                     <!-- <Image Source="money.png" Grid.Row="1" /> -->
                                                     <Label Text="Utilization $: " Style="{StaticResource BodyLabel}"/>
                                                     <Label Text="{Binding HUtilizationVar}" Style="{StaticResource HandleLabel}" />
@@ -142,10 +159,64 @@
 		<ContentPage Title="Day's">
 
         	<ContentPage.Content>
-				<StackLayout BackgroundColor="White">  
+				<StackLayout >  
 
-                    <DatePicker x:Name="fechaRec" Date="{Binding TheDateRec}" IsEnabled="false" VerticalOptions="CenterAndExpand"></DatePicker>
-					
+                    <DatePicker x:Name="fechaRec" Date="{Binding TheDateRec}"/>
+                    <Button x:Name="btnBuscar" Text="Search" Clicked="ButDia"/>
+                    <ActivityIndicator x:Name="indicator3" IsRunning="false" Color="Blue" WidthRequest="20" HeightRequest="20" />
+                    <Label x:Name="indLabel3" TextColor="Blue" HorizontalOptions="Center" />
+
+                    <ListView x:Name="lvInicio3" RowHeight="200"  SeparatorVisibility="None">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid RowSpacing="5" Margin="10,5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="AUTO"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Image Source="hidepink.jpg" Aspect="AspectFill" Grid.RowSpan="2" />
+
+                                            <Grid Margin="10" RowSpacing="10" ColumnSpacing="5" Grid.Row="1">
+                                            
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="AUTO"/>
+                                                    <RowDefinition Height="AUTO"/>
+                                                    <RowDefinition Height="AUTO"/>
+                                                    <RowDefinition Height="AUTO"/>
+                                                    <RowDefinition Height="AUTO"/>
+                                                </Grid.RowDefinitions>
+                                            
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="AUTO"/>
+                                                    <ColumnDefinition Width="AUTO"/>
+                                                </Grid.ColumnDefinitions>
+
+                                            
+                                                <Label Text="{Binding Planta}" Grid.Row="0" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}" />
+                                                <Label Text="{Binding Año}" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}"/>
+                                                <Label Text="{Binding Fecha}" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource HandleLabel}"/>
+
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Grid.Row="4" Spacing="2">
+                                                    <Label Text="Cueros: " Style="{StaticResource BodyLabel}" />
+                                                    <Label Text="{Binding Cueros}"  Style="{StaticResource HandleLabel}" />
+                                                </StackLayout>
+
+                                                <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Grid.Row="5" Spacing="5">
+                                                    <!-- <Image Source="money.png" Grid.Row="1" /> -->
+                                                    <Label Text="Utilization $: " Style="{StaticResource BodyLabel}"/>
+                                                    <Label Text="{Binding HUtilizationVar}" Style="{StaticResource HandleLabel}" />
+                                                    <Label Text="USD" Style="{StaticResource BodyLabel}"/>
+                                                </StackLayout>
+
+                                            
+                                            </Grid>
+                                        
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
 				</StackLayout> 
 			</ContentPage.Content>
 

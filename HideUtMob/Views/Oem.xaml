@@ -17,7 +17,7 @@
                 <StackLayout BackgroundColor="White" >
                     <ActivityIndicator x:Name="indicator1" IsRunning="false" Color="Blue" WidthRequest="20" HeightRequest="20" />
                     <Label x:Name="indLabel1" TextColor="Blue" HorizontalOptions="Center" />
-                    <ListView x:Name="lvInicio1" RowHeight="190" SeparatorVisibility="None">
+                    <ListView x:Name="lvInicio1" RowHeight="200" SeparatorVisibility="None">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -26,13 +26,14 @@
                                                 <RowDefinition Height="AUTO"/>
                                             </Grid.RowDefinitions>
 
-                                            <Image Source="blueleather.png" Aspect="AspectFill" Grid.RowSpan="2" />
+                                            <Image Source="hidered.jpg" Aspect="AspectFill" Grid.RowSpan="2" />
 
                                             <Grid Margin="10" RowSpacing="10" ColumnSpacing="5" Grid.Row="1">
                                             
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="AUTO"/>
-                                                    <RowDefinition Height="20"/>
+                                                    <RowDefinition Height="AUTO"/>
+                                                    <RowDefinition Height="AUTO"/>
                                                     <RowDefinition Height="20"/>
                                                     <RowDefinition Height="20"/>
                                                     <RowDefinition Height="20"/>
@@ -44,8 +45,9 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <Label Text="{Binding Planta}" Grid.Row="0"  Style="{StaticResource HandleLabel}" />
-                                                <Label Text="{Binding Mes}" Grid.Row="1" Style="{StaticResource HandleLabel}"/>
-                                                <Label Text="{Binding Año}" Grid.Row="2" Style="{StaticResource HandleLabel}"/>
+                                                <Label Text="{Binding DescrOem}" Grid.Row="1"  Style="{StaticResource HandleLabel}" />
+                                                <Label Text="{Binding Mes}" Grid.Row="2" Style="{StaticResource HandleLabel}"/>
+                                                <Label Text="{Binding Año}" Grid.Row="3" Style="{StaticResource HandleLabel}"/>
                                                 <Image Source="mo.png" />
                                             
                                                 <StackLayout Orientation="Horizontal" VerticalOptions="Center" Grid.Column="1" Grid.Row="3" Spacing="2">

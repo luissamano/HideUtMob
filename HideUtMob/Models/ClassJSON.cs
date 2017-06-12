@@ -45,12 +45,15 @@ namespace HideUtMob
             public int Dia { get; set; }
             public int Año { get; set; }
             public int Mes { get; set; }
+            public DateTime Fecha { get; set; }
         }
 
         public class ModelOem
         {
             public string DescrOem { get; set; }
         }
+
+
 
 
 
